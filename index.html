@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riders to the Sea - The Red Death Academic Exam</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --dark-bg: #0b0c10;
+            --card-bg: #1f2833;
+            --primary-gold: #c5c6c7;
+            --accent-red: #660000;
+            --highlight: #45a29e;
+            --text-white: #ffffff;
+            --correct: #27ae60;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-white);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 900px;
+            background: var(--card-bg);
+            border: 2px solid var(--accent-red);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 0 30px rgba(102, 0, 0, 0.5);
+        }
+
+        header {
+            text-align: center;
+            border-bottom: 2px solid var(--accent-red);
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+        }
+
+        h1 { font-family: 'Playfair Display', serif; color: var(--text-white); font-size: 2.2rem; }
+        .difficulty-tag { color: #ff0000; font-weight: bold; font-size: 1.1rem; }
+
+        .screen { display: none; }
+        .screen.active { display: block; animation: fadeIn 0.8s; }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        input[type="text"] {
+            width: 80%;
+            padding: 15px;
+            background: #0b0c10;
+            border: 1px solid var(--highlight);
+            color: white;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            background: var(--accent-red);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: 0.3s;
+            border-radius: 5px;
+        }
+
+        .btn:hover { background: #990000; transform: scale(1.05); }
+
+        .progress-bar {
+            width: 100%;
+            height: 5px;
+            background: #0b0c10;
+            margin: 20px 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--accent-red);
+            width: 0%;
+        }
+
+        .question-box {
+            background: #0b0c10;
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: left;
+            direction: ltr;
+            border-left: 5px solid var(--accent-red);
+        }
+
+        .question-text { font-size: 1.3rem; line-height: 1.6; }
+
+        .options-grid { display: grid; grid-template-columns: 1fr; gap: 15px; direction: ltr; }
+
+        .option {
+            background: #1f2833;
+            border: 1px solid var(--highlight);
+            padding: 15px;
+            cursor: pointer;
+            transition: 0.2s;
+            text-align: left;
+            position: relative;
+        }
+
+        .option:hover { background: #45a29e33; }
+        .option.correct-visual { background: var(--correct) !important; border-color: var(--correct); }
+        .option.wrong-visual { background: var(--accent-red) !important; border-color: var(--accent-red); }
+
+        .review-section {
+            margin-top: 40px;
+            max-height: 500px;
+            overflow-y: auto;
+            background: #0b0c10;
+            padding: 20px;
+            text-align: left;
+            direction: ltr;
+        }
+
+        .review-item { border-bottom: 1px solid #333; padding: 15px 0; }
+        .score-circle {
+            width: 150px;
+            height: 150px;
+            border: 5px solid var(--accent-red);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Riders to the Sea - Extreme Academy</h1>
+        <div class="difficulty-tag">⚠️ تحذير: مستوى الصعوبة (موت أحمر) - نقد تراجيدي متقدم</div>
+    </header>
+
+    <div id="start-screen" class="screen active" style="text-align: center;">
+        <p>الاختبار يشمل 75 سؤالاً من أدق التفاصيل النقدية والرمزية.</p>
+        <input type="text" id="studentName" placeholder="أدخل اسمك الكامل">
+        <br>
+        <button class="btn" onclick="startQuiz()">ابدأ المواجهة</button>
+    </div>
+
+    <div id="quiz-screen" class="screen">
+        <div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
+        <div class="question-box">
+            <div id="question-text" class="question-text"></div>
+        </div>
+        <div id="options-container" class="options-grid"></div>
+        <p style="text-align: center; margin-top: 20px;">Question <span id="q-current">1</span> / 75</p>
+    </div>
+
+    <div id="result-screen" class="screen" style="text-align: center;">
+        <h2 id="result-name"></h2>
+        <div class="score-circle" id="score-display">0%</div>
+        <div id="review-container" class="review-section"></div>
+        <button class="btn" style="margin-top: 20px;" onclick="location.reload()">إعادة الاختبار</button>
+    </div>
+</div>
+
+<script>
+    const quizData = [
+        // --- 50 MCQ (Very Hard) ---
+        { question: "According to Nicholas Grene (2021), Maurya's identity is constructed through which specific tragic pattern?", options: ["Economic deprivation", "Repeated loss through generational mourning", "Rebellion against coastal traditions", "Spiritual exile from the mainland"], correct: 1 },
+        { question: "What does Cóilín Owens argue is the 'Mythic Adversary' in Synge's drama?", options: ["The Irish Government", "The indifferent sea", "Pagan rituals", "Economic stagnation"], correct: 1 },
+        { question: "In the context of Maurya's vision, the 'Grey Horse' ridden by Michael is an archetype of:", options: ["Spectral pursuit and the finality of fate", "The resurrection of Irish fishing culture", "Economic recovery and trade", "A warning of impending storms"], correct: 0 },
+        { question: "Christopher Morash claims Cathleen's role provides the play with structural coherence by representing:", options: ["Mystical divination", "The practical labor of sustaining families under extreme hardship", "Romantic interest for the villagers", "The legal authority of the household"], correct: 1 },
+        { question: "Ann Saddlemyer defines Nora as the 'emotional gateway' because her fear represents:", options: ["The normalization of tragedy in Irish life", "The initial shock of disaster before it becomes routine", "The rejection of ancestral mourning", "The failure of the youth to support the elderly"], correct: 1 },
+        { question: "Synge's 'indifferent sea' is a force whose power lies primarily in its:", options: ["Cruelty and malice", "Neutrality and lack of human regard", "Spiritual holiness", "Violent outbursts of anger"], correct: 1 },
+        { question: "Anthony Roche argues that Bartley’s fatal decision is driven by responsibility, meaning he is:", options: ["Reckless and seeking glory", "Doomed despite his determination to fulfill economic needs", "Unaware of the dangers of the sea", "Pressured by the villagers to sail"], correct: 1 },
+        { question: "The final acceptance of Maurya ('No man at all can be living forever') signifies:", options: ["Passive defeat", "Tragic clarity that reduces human agency to near zero", "Rebellion against religious doctrine", "Indifference toward Bartley's death"], correct: 1 },
+        { question: "Synge's dramatic style, influenced by the Aran Islands, is best described as:", options: ["Strictly naturalistic", "Realistic yet poetic depictions of rural life", "Avant-garde surrealism", "Political propaganda for Irish independence"], correct: 1 },
+        { question: "What element does Grene claim blends together to form the play's moral core?", options: ["Economic need and greed", "Christian resignation and pagan fatalism", "Political activism and isolation", "Family love and individual hatred"], correct: 1 },
+        { question: "The missing body of Michael serves the plot by:", options: ["Creating a comic relief", "Haunting the family and providing a psychological focus", "Driving Bartley to seek revenge", "Confirming the sea's kindness"], correct: 1 },
+        { question: "Maurya’s tragedy is communal because she speaks for:", options: ["Generations of Irish women enduring poverty and death", "The male leaders of the fishing community", "The Abbey Theatre's founding principles", "The wealthy traders of Donegal"], correct: 0 },
+        { question: "Which horse actually throws Bartley into the sea, according to the play's climax?", options: ["The Grey Horse", "The Red Horse", "The White Pony", "A Black Stallion"], correct: 1 },
+        { question: "The play is a tragedy of fate, family, and the sea. The sea is considered a character in:", options: ["Name only", "All but name, as an omnipresent symbolic force", "The dialogue of the ghosts", "The political subtext only"], correct: 1 },
+        { question: "Synge's co-founding of the Abbey Theatre was aimed at portraying:", options: ["Urban Irish success", "Rural Irish life with poetic realism", "British colonial triumphs", "Religious history of Dublin"], correct: 1 },
+        { question: "The bundle of clothes from Donegal serves as a _________ focal point.", options: ["Symbolic", "Tragic identification", "Prop-heavy", "Comic"], correct: 1 },
+        { question: "Bartley represents the young Irish men forced to confront dangerous conditions to:", options: ["Escape their mothers", "Support their family economy", "Become famous", "Win a bet"], correct: 1 },
+        { question: "The 'Red Horse' in Maurya's vision is symbolic of:", options: ["Life and Blood under threat", "Success and vitality", "The Church's power", "War on the mainland"], correct: 0 },
+        { question: "What overrides fear in Bartley's decision to cross the sea?", options: ["Personal pride", "Economic need", "Lack of information", "Religious fervor"], correct: 1 },
+        { question: "Maurya’s acceptance at the end is described as having:", options: ["Quiet dignity", "Loud anger", "Silent terror", "Complete ignorance"], correct: 0 },
+        { question: "Nora symbolize youth confronted prematurely with:", options: ["Marriage", "Death and ritualized mourning", "Education", "Wealth"], correct: 1 },
+        { question: "The sea functions as a representation of Ireland's long history of:", options: ["Agricultural victory", "Maritime tragedy (famine, migration, drowning)", "Scientific exploration", "Military naval dominance"], correct: 1 },
+        { question: "Maurya's final speech suggests that we must be:", options: ["Angry", "Satisfied with the end of struggle", "Fearful", "Rich"], correct: 1 },
+        { question: "Synge's sea is not 'cruel' but entirely:", options: ["Friendly", "Indifferent", "Evil", "Predictable"], correct: 1 },
+        { question: "According to Morash, Cathleen represents women who sustain families under:", options: ["Extreme hardship", "Luxury", "Boredom", "Political peace"], correct: 0 },
+        { question: "The vision of the Grey Horse behind the Red Horse is an omen of:", options: ["Wealth", "Death", "Marriage", "A good harvest"], correct: 1 },
+        { question: "The play's setting in the Aran Islands emphasizes:", options: ["Modernity", "Isolation and the threat of the sea", "Urban complexity", "Religious safety"], correct: 1 },
+        { question: "Synge was a folklorist. This influenced his use of:", options: ["Latin script", "Dialect and mythic patterns", "Technological terms", "English legal code"], correct: 1 },
+        { question: "Maurya's husband and five sons were lost before Bartley. This establishes the:", options: ["Economic wealth", "Tragic cycle of the sea", "Luck of the family", "Safety of the cottage"], correct: 1 },
+        { question: "The play ends with the acknowledgment of human ________ before fate.", options: ["Strength", "Helplessness", "Intelligence", "Greed"], correct: 1 },
+        { question: "Bartley's death 'fulfills the tragic __________' implied throughout the play.", options: ["Law", "Prophecy", "Joke", "Contract"], correct: 1 },
+        { question: "The language Synge uses is realistic yet:", options: ["Vulgar", "Poetic", "Silent", "Scientific"], correct: 1 },
+        { question: "The Sea is the 'Antagonist' because it shapes the _______ more than humans.", options: ["Economy", "Plot", "Furniture", "Weather only"], correct: 1 },
+        { question: "Nicholas Grene's book (2021) is titled:", options: ["The Sea of Synge", "The Theatre of Synge", "The Irish Fate", "Riders of Ireland"], correct: 1 },
+        { question: "Maurya's suffering is communal because she speaks for generations of:", options: ["Irish women", "British soldiers", "Mainland traders", "Priests"], correct: 0 },
+        { question: "The bundle of clothes belonged to:", options: ["Bartley", "Michael", "The Father", "Nora"], correct: 1 },
+        { question: "Bartley was going to sell:", options: ["Fish", "Horses", "The house", "Boats"], correct: 1 },
+        { question: "The vision happened while Maurya was carrying:", options: ["A baby", "Bread", "A net", "A candle"], correct: 1 },
+        { question: "The play 'Riders to the Sea' was written in:", options: ["1904", "1871", "1921", "2021"], correct: 0 },
+        { question: "Nora's presence in the play 'softens' the:", options: ["Lighting", "Harsher elements", "Economic cost", "Religion"], correct: 1 },
+        { question: "The 'Red Horse' carries:", options: ["Michael", "Bartley", "The Father", "A villager"], correct: 1 },
+        { question: "The 'Grey Horse' carries:", options: ["Bartley", "Michael", "A ghost", "Nora"], correct: 1 },
+        { question: "Bartley’s decision is NOT driven by:", options: ["Responsibility", "Recklessness", "Family need", "The market"], correct: 1 },
+        { question: "Synge's depictions are focused on _______ Irish life.", options: ["Urban", "Rural", "Royal", "Military"], correct: 1 },
+        { question: "The play is a 'One-Act' ____________.", options: ["Comedy", "Tragedy", "Farce", "Satire"], correct: 1 },
+        { question: "Fate reduces human agency to:", options: ["Everything", "Almost nothing", "Great power", "Wealth"], correct: 1 },
+        { question: "Cathleen grounds the play and gives it:", options: ["Humor", "Structural coherence", "Confusion", "Fear"], correct: 1 },
+        { question: "The villagers carry Bartley's body in at the:", options: ["Beginning", "End", "Middle", "None"], correct: 1 },
+        { question: "Maurya's tragedy is ________ at the end of the play.", options: ["Incomplete", "Complete", "Forgotten", "Avoided"], correct: 1 },
+        { question: "Synge co-founded the Abbey Theatre with:", options: ["Yeats and others", "Only by himself", "With the King", "With Bartley"], correct: 0 },
+
+        // --- 25 True/False ---
+        { question: "According to Grene, Maurya's identity is shaped by repeated loss. (True/False)", options: ["True", "False"], correct: 0 },
+        { question: "Bartley goes to the mainland to buy horses for his sisters. (True/False)", options: ["True", "False"], correct: 1 },
+        { question: "The sea is an indifferent force, not a cruel one, in Synge's view. (True/False)", options: ["True", "False"], correct: 0 },
+        { question: "Michael's body is found in the cottage at the start of the play. (True/False)", options: ["True", "False"], correct: 1 },
+        { question: "Cathleen is described as the emotional gateway of the play. (True/False)", options: ["True", "False"], correct: 1 },
+        { question: "The vision of the Grey Horse is a death omen. (True/False)", options: ["True", "False"], correct: 0 },
+        { question: "Anthony Roche argues Bartley is reckless. (True/False)", options: ["True", "False"], correct: 1 },
+        { question: "Maurya's final acceptance represents 'Tragic Clarity'. (True/False)", options: ["True", "False"], correct: 0 },
+        { question: "The bundle of clothes came from the mainland (Donegal). (True/False)", options: ["True", "False"], correct: 0 },
+        { question: "The play is set in a modern urban city. (True/False)", options: ["True", "False"], correct: 1 },
+        { question: "Synge was a co-founder of the Abbey Theatre. (True/False)", options: ["True", "False"], correct: 0 },
+        { question: "Nora is the eldest, practical daughter. (True/False)", options: ["True", "False"], correct: 1 },
+        { question: "The sea represents Ireland's history of famine and drowning. (True/False)", options: ["True", "False"], correct: 0 },
+        { question: "Fate makes human agency almost nothing in this play. (True/False)", options: ["True", "False"], correct: 0 },
+        { question: "Maurya's suffering is individual and not communal. (True/False)", options: ["True", "False"], correct: 1 },
+        { question: "Synge's style is realistic yet poetic. (True/False)", options: ["True", "False"], correct: 0 },
+        { question: "Bartley insisted on going because of economic need. (True/False)", options: ["True", "False"], correct: 0 },
+        { question: "The Grey Horse was ridden by Bartley in the vision. (True/False)", options: ["True", "False"], correct: 1 },
+        { question: "Cathleen mediates between Nora's emotions and Maurya's despair. (True/False)", options: ["True", "False"], correct: 0 },
+        { question: "The sea shapes the plot more than the humans do. (True/False)", options: ["True", "False"], correct: 0 },
+        { question: "The play ends with a quiet dignity. (True/False)", options: ["True", "False"], correct: 0 },
+        { question: "Synge traveled to the Aran Islands frequently. (True/False)", options: ["True", "False"], correct: 0 },
+        { question: "Maurya's character blends Christian and pagan elements. (True/False)", options: ["True", "False"], correct: 0 },
+        { question: "The villagers bring in Michael's body at the end. (True/False)", options: ["True", "False"], correct: 1 },
+        { question: "Nicholas Grene's edition was published in 2021. (True/False)", options: ["True", "False"], correct: 0 }
+    ];
+
+    let currentQ = 0;
+    let score = 0;
+    let userMistakes = [];
+    let userName = "";
+
+    function startQuiz() {
+        const input = document.getElementById('studentName');
+        if (!input.value.trim()) { alert("أدخل اسمك أولاً أيها الراجل!"); return; }
+        userName = input.value;
+        document.getElementById('start-screen').classList.remove('active');
+        document.getElementById('quiz-screen').classList.add('active');
+        loadQuestion();
+    }
+
+    function loadQuestion() {
+        const q = quizData[currentQ];
+        document.getElementById('question-text').innerText = q.question;
+        const container = document.getElementById('options-container');
+        container.innerHTML = '';
+        
+        // Randomize Options
+        let shuffledOptions = q.options.map((opt, i) => ({ text: opt, originalIndex: i }));
+        shuffledOptions.sort(() => Math.random() - 0.5);
+
+        shuffledOptions.forEach((opt) => {
+            const div = document.createElement('div');
+            div.className = 'option';
+            div.innerText = opt.text;
+            div.onclick = () => checkAnswer(opt.originalIndex, q.correct, div, shuffledOptions);
+            container.appendChild(div);
+        });
+
+        document.getElementById('q-current').innerText = currentQ + 1;
+        document.getElementById('progress').style.width = (currentQ / quizData.length * 100) + "%";
+    }
+
+    function checkAnswer(selectedIndex, correctIndex, element, shuffledSet) {
+        const options = document.querySelectorAll('.option');
+        options.forEach(opt => opt.onclick = null);
+
+        if (selectedIndex === correctIndex) {
+            element.classList.add('correct-visual');
+            score++;
+        } else {
+            element.classList.add('wrong-visual');
+            options.forEach((el, idx) => {
+                if (shuffledSet[idx].originalIndex === correctIndex) {
+                    el.classList.add('correct-visual');
+                }
+            });
+            userMistakes.push({
+                q: quizData[currentQ].question,
+                y: quizData[currentQ].options[selectedIndex],
+                c: quizData[currentQ].options[correctIndex]
+            });
+        }
+
+        setTimeout(() => {
+            currentQ++;
+            if (currentQ < quizData.length) {
+                loadQuestion();
+            } else {
+                showFinalResults();
+            }
+        }, 1000);
+    }
+
+    function showFinalResults() {
+        document.getElementById('quiz-screen').classList.remove('active');
+        document.getElementById('result-screen').classList.add('active');
+        document.getElementById('result-name').innerText = `تقرير الموت لـ: ${userName}`;
+        const finalScore = Math.round((score / quizData.length) * 100);
+        document.getElementById('score-display').innerText = finalScore + "%";
+
+        const review = document.getElementById('review-container');
+        review.innerHTML = "<h3>قائمة الأخطاء (Detailed Review):</h3>";
+        if (userMistakes.length === 0) {
+            review.innerHTML += "<p style='color:green;'>أحسنت! لقد نجوت من البحر.</p>";
+        } else {
+            userMistakes.forEach(m => {
+                review.innerHTML += `
+                    <div class="review-item">
+                        <p><strong>Question:</strong> ${m.q}</p>
+                        <p style="color:red;">✘ Your Answer: ${m.y}</p>
+                        <p style="color:green;">✔ Correct Answer: ${m.c}</p>
+                    </div>
+                `;
+            });
+        }
+    }
+</script>
+
+</body>
+</html>
