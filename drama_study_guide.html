@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Drama Study Guide | دليل الدراما الدراسي</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Amiri:ital,wght@0,400;0,700;1,400&family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #c9a84c;
+    --gold-light: #e8c97a;
+    --gold-dim: #7a6030;
+    --dark: #0a0a0a;
+    --dark-2: #111111;
+    --dark-3: #1a1a1a;
+    --dark-4: #222222;
+    --text: #e8e0d0;
+    --text-dim: #a09880;
+    --accent: #8b3a3a;
+    --accent2: #2a4a6a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--dark);
+    color: var(--text);
+    font-family: 'Amiri', serif;
+    font-size: 16px;
+    line-height: 1.8;
+    min-height: 100vh;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    background: linear-gradient(160deg, #0a0a0a 0%, #1a1205 50%, #0a0a0a 100%);
+    border-bottom: 1px solid var(--gold-dim);
+    padding: 60px 20px 50px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 0%, rgba(201,168,76,0.12) 0%, transparent 70%);
+  }
+  .hero-line {
+    width: 120px; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 18px auto;
+  }
+  .hero h1 {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    color: #fff;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+  }
+  .hero h2 {
+    font-family: 'Amiri', serif;
+    font-size: clamp(1.1rem, 3vw, 1.6rem);
+    color: var(--gold);
+    font-weight: 400;
+    margin-top: 6px;
+  }
+  .hero p {
+    color: var(--text-dim);
+    font-size: 1rem;
+    margin-top: 10px;
+  }
+
+  /* ─── NAV TABS ─── */
+  .tabs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    padding: 24px 16px 0;
+    background: var(--dark-2);
+    border-bottom: 1px solid #2a2a2a;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .tab-btn {
+    background: transparent;
+    border: 1px solid #333;
+    color: var(--text-dim);
+    padding: 10px 20px;
+    font-family: 'Amiri', serif;
+    font-size: 0.95rem;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all 0.25s;
+    white-space: nowrap;
+  }
+  .tab-btn:hover { border-color: var(--gold-dim); color: var(--gold-light); }
+  .tab-btn.active {
+    background: linear-gradient(135deg, #1a1205, #2a1e08);
+    border-color: var(--gold);
+    color: var(--gold);
+  }
+
+  /* ─── SECTIONS ─── */
+  .section { display: none; padding: 40px 20px 60px; max-width: 1100px; margin: 0 auto; }
+  .section.active { display: block; animation: fadeIn 0.4s ease; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+  .section-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.6rem;
+    color: var(--gold);
+    text-align: center;
+    letter-spacing: 3px;
+    margin-bottom: 6px;
+  }
+  .section-sub {
+    font-family: 'Amiri', serif;
+    font-size: 1.2rem;
+    color: var(--text-dim);
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  .divider {
+    width: 200px; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
+    margin: 0 auto 36px;
+  }
+
+  /* ─── BILINGUAL TABLE ─── */
+  .bi-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 36px;
+    font-size: 1rem;
+  }
+  .bi-table thead tr {
+    background: linear-gradient(90deg, var(--gold-dim), #3a2800, var(--gold-dim));
+  }
+  .bi-table thead th {
+    padding: 14px 18px;
+    color: var(--gold-light);
+    font-family: 'Cinzel', serif;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    text-align: center;
+  }
+  .bi-table tbody tr {
+    border-bottom: 1px solid #222;
+    transition: background 0.2s;
+  }
+  .bi-table tbody tr:hover { background: rgba(201,168,76,0.05); }
+  .bi-table tbody td {
+    padding: 13px 18px;
+    vertical-align: top;
+    line-height: 1.7;
+  }
+  .bi-table tbody td:first-child {
+    color: var(--text);
+    border-right: 1px solid #2a2a2a;
+    text-align: right;
+    direction: rtl;
+  }
+  .bi-table tbody td:last-child {
+    color: #c8c0b0;
+    text-align: left;
+    direction: ltr;
+    font-family: 'Playfair Display', serif;
+    font-size: 0.95rem;
+  }
+  .bi-table .num { color: var(--gold); font-weight: 700; }
+
+  /* ─── CARD ─── */
+  .card {
+    background: var(--dark-3);
+    border: 1px solid #2a2a2a;
+    border-top: 2px solid var(--gold-dim);
+    border-radius: 4px;
+    padding: 24px 28px;
+    margin-bottom: 24px;
+  }
+  .card h3 {
+    font-family: 'Cinzel', serif;
+    color: var(--gold);
+    font-size: 1.05rem;
+    letter-spacing: 1px;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .card h3 span.ar { font-family: 'Amiri', serif; font-size: 1rem; color: var(--text-dim); }
+
+  /* ─── MCQ ─── */
+  .mcq-item {
+    background: var(--dark-3);
+    border: 1px solid #252525;
+    border-right: 3px solid var(--gold-dim);
+    border-radius: 4px;
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+  .mcq-q {
+    padding: 18px 20px 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+  }
+  .mcq-num {
+    background: var(--gold-dim);
+    color: var(--dark);
+    font-family: 'Cinzel', serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 3px 9px;
+    border-radius: 2px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-top: 3px;
+  }
+  .mcq-text { flex: 1; }
+  .mcq-text .ar { font-size: 1.05rem; color: var(--text); line-height: 1.6; }
+  .mcq-text .en { font-family: 'Playfair Display', serif; font-size: 0.9rem; color: var(--text-dim); margin-top: 3px; direction: ltr; }
+  .mcq-opts {
+    padding: 0 20px 16px 20px;
+    display: none;
+    flex-direction: column;
+    gap: 7px;
+  }
+  .mcq-opts.open { display: flex; }
+  .opt {
+    padding: 9px 14px;
+    border: 1px solid #2a2a2a;
+    border-radius: 3px;
+    font-size: 0.95rem;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    direction: rtl;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .opt:hover { border-color: #444; background: rgba(255,255,255,0.02); }
+  .opt.correct { border-color: #3a6a3a; background: rgba(50,100,50,0.15); color: #7fc87f; }
+  .opt.correct .opt-letter { background: #2a5a2a; }
+  .opt-letter {
+    background: #2a2a2a;
+    color: var(--gold);
+    font-family: 'Cinzel', serif;
+    font-size: 0.75rem;
+    padding: 2px 7px;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+  .answer-reveal {
+    padding: 10px 20px 16px;
+    display: none;
+    background: rgba(201,168,76,0.06);
+    border-top: 1px solid #2a2a2a;
+  }
+  .answer-reveal.open { display: block; }
+  .answer-reveal p { font-size: 0.9rem; color: var(--text-dim); }
+  .answer-reveal .ans-label { color: var(--gold); font-family: 'Cinzel', serif; font-size: 0.8rem; margin-bottom: 4px; }
+
+  .show-all-btn {
+    display: block;
+    margin: 0 auto 28px;
+    background: linear-gradient(135deg, #1a1205, #2a1e08);
+    border: 1px solid var(--gold-dim);
+    color: var(--gold-light);
+    font-family: 'Cinzel', serif;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    padding: 12px 28px;
+    cursor: pointer;
+    transition: all 0.25s;
+    border-radius: 2px;
+  }
+  .show-all-btn:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* ─── TAG ─── */
+  .tag {
+    display: inline-block;
+    background: rgba(201,168,76,0.1);
+    border: 1px solid var(--gold-dim);
+    color: var(--gold-light);
+    font-family: 'Cinzel', serif;
+    font-size: 0.72rem;
+    letter-spacing: 1px;
+    padding: 3px 10px;
+    border-radius: 2px;
+    margin: 3px 2px;
+    text-transform: uppercase;
+  }
+  .tag.red { background: rgba(139,58,58,0.15); border-color: #6a3030; color: #d08080; }
+  .tag.blue { background: rgba(42,74,106,0.2); border-color: #2a4a6a; color: #80a8d0; }
+
+  /* ─── CHAR GRID ─── */
+  .char-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+    margin-bottom: 30px;
+  }
+  .char-card {
+    background: var(--dark-4);
+    border: 1px solid #2a2a2a;
+    border-top: 2px solid var(--gold-dim);
+    padding: 20px;
+    border-radius: 3px;
+  }
+  .char-card h4 { color: var(--gold); font-family: 'Cinzel', serif; font-size: 1rem; margin-bottom: 8px; }
+  .char-card .en-desc { font-family: 'Playfair Display', serif; font-size: 0.88rem; color: var(--text-dim); margin-bottom: 6px; direction: ltr; }
+  .char-card .ar-desc { font-size: 0.95rem; color: var(--text); }
+
+  /* ─── SCROLL TOP ─── */
+  .scroll-top {
+    position: fixed;
+    bottom: 24px;
+    left: 24px;
+    background: var(--dark-3);
+    border: 1px solid var(--gold-dim);
+    color: var(--gold);
+    width: 42px; height: 42px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem;
+    cursor: pointer;
+    border-radius: 2px;
+    z-index: 200;
+    transition: all 0.2s;
+  }
+  .scroll-top:hover { border-color: var(--gold); background: rgba(201,168,76,0.1); }
+
+  @media (max-width: 600px) {
+    .bi-table tbody td { padding: 10px 10px; font-size: 0.9rem; }
+    .tab-btn { font-size: 0.85rem; padding: 8px 12px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <h1>DRAMA</h1>
+  <div class="hero-line"></div>
+  <h2>دليل الدراسة الثنائي اللغة | Bilingual Study Guide</h2>
+  <p>Second Year &nbsp;·&nbsp; السنة الثانية</p>
+  <div style="margin-top:18px;">
+    <span class="tag">Marlowe</span>
+    <span class="tag">Doctor Faustus</span>
+    <span class="tag">Riders to the Sea</span>
+    <span class="tag">60 MCQ</span>
+  </div>
+</div>
+
+<!-- TABS -->
+<div class="tabs">
+  <button class="tab-btn active" onclick="showTab('topics')">📖 المواضيع الرئيسية | Topics</button>
+  <button class="tab-btn" onclick="showTab('marlowe')">🎭 مارلو | Marlowe</button>
+  <button class="tab-btn" onclick="showTab('riders')">🌊 راكبو البحر | Riders</button>
+  <button class="tab-btn" onclick="showTab('drama')">📜 الدراما | Drama</button>
+  <button class="tab-btn" onclick="showTab('mcq')">❓ أسئلة MCQ</button>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- TAB 1: TOPICS -->
+<!-- ══════════════════════════════════════════ -->
+<div id="topics" class="section active">
+  <div class="section-title">أهم المواضيع</div>
+  <div class="section-sub">Key Topics from All Three Lectures</div>
+  <div class="divider"></div>
+
+  <div class="card">
+    <h3>1. تعريف الدراما <span class="ar">| Definition of Drama</span></h3>
+    <table class="bi-table">
+      <thead><tr><th>العربي 🇸🇦</th><th>English 🇬🇧</th></tr></thead>
+      <tbody>
+        <tr><td>الدراما أدب يُكتب ليُؤدَّى أمام الجمهور</td><td>Drama is literature written to be performed before an audience</td></tr>
+        <tr><td>الكلمة مشتقة من اليونانية "dran" أي "يفعل أو يمثّل"</td><td>The word comes from the Greek "dran" meaning "to do or act"</td></tr>
+        <tr><td>تجمع بين الحوار والأداء والعناصر البصرية</td><td>It combines dialogue, performance, and visual elements</td></tr>
+        <tr><td>الدراما = فعل وحركة</td><td>Drama = Action</td></tr>
+        <tr><td>عرّفها أرسطو بأنها "محاكاة لفعل جدّي وتام وذي قيمة معينة"</td><td>Aristotle defined it as "an imitation of a serious, complete action of a certain magnitude"</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>2. العناصر الرئيسية للدراما <span class="ar">| Major Elements of Drama</span></h3>
+    <table class="bi-table">
+      <thead><tr><th>العربي</th><th>English</th></tr></thead>
+      <tbody>
+        <tr><td><span class="num">1.</span> الحبكة — تسلسل الأحداث، "روح التراجيديا"</td><td><span class="num">1.</span> Plot — sequence of events, "soul of tragedy" (Aristotle)</td></tr>
+        <tr><td><span class="num">2.</span> الشخصيات — البطل والخصم والأدوار الثانوية</td><td><span class="num">2.</span> Characters — protagonist, antagonist, supporting roles</td></tr>
+        <tr><td><span class="num">3.</span> المضمون — الفكرة المركزية كالحب والسلطة والقدر</td><td><span class="num">3.</span> Theme — central idea: love, power, fate, justice, identity</td></tr>
+        <tr><td><span class="num">4.</span> الحوار — كلام الشخصيات الذي يكشف مشاعرها</td><td><span class="num">4.</span> Dialogue — spoken words revealing emotions and relationships</td></tr>
+        <tr><td><span class="num">5.</span> البيئة — الزمان والمكان اللذان تجري فيهما الأحداث</td><td><span class="num">5.</span> Setting — time and place establishing context and atmosphere</td></tr>
+        <tr><td><span class="num">6.</span> الصراع — داخلي (في الشخصية) أو خارجي (مع الآخرين أو القدر)</td><td><span class="num">6.</span> Conflict — internal (within character) or external (vs. others/fate/nature)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>3. الدراما الحديثة <span class="ar">| Modern Drama</span></h3>
+    <table class="bi-table">
+      <thead><tr><th>العربي</th><th>English</th></tr></thead>
+      <tbody>
+        <tr><td>ظهرت في أواخر القرن التاسع عشر وأوائل العشرين</td><td>Emerged in the late 19th and early 20th centuries</td></tr>
+        <tr><td>تميّزت بالقطيعة مع الرومانسية والمبالغة</td><td>Marked a decisive break from romanticism and exaggeration</td></tr>
+        <tr><td>اتجهت نحو الواقعية والعمق النفسي</td><td>Turned toward realism and psychological depth</td></tr>
+        <tr><td>تستكشف قضايا اجتماعية وأخلاقية ووجودية</td><td>Explores social, moral, and existential issues</td></tr>
+        <tr><td>تُركّز على التجربة الفردية لا السرديات الكبرى</td><td>Emphasizes individual experience over grand narratives</td></tr>
+        <tr><td>ريموند ويليامز: جعلت الدراما المسرح مكاناً تفحص فيه المجتمع نفسه</td><td>Raymond Williams: modern drama "made the theatre a place where society could examine itself"</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>4. الدراما الأيرلندية <span class="ar">| Irish Drama</span></h3>
+    <table class="bi-table">
+      <thead><tr><th>العربي</th><th>English</th></tr></thead>
+      <tbody>
+        <tr><td>تطوّرت كحركة أدبية وقومية في آنٍ واحد</td><td>Developed as both a literary and national movement</td></tr>
+        <tr><td>ارتبطت بنضال أيرلندا من أجل الهوية والاستقلال</td><td>Intertwined with Ireland's struggle for cultural identity and independence</td></tr>
+        <tr><td>اعتمدت الواقعية والرمزية واللغة الشعرية</td><td>Embraced realism, symbolism, and poetic language</td></tr>
+        <tr><td>جعلت المسرح وسيلة للتعبير الوطني</td><td>Made drama a medium for national consciousness</td></tr>
+        <tr><td>سينج (1871-1909) أبرز كتّابها وأكثرهم إثارةً للجدل</td><td>Synge (1871–1909) is the most influential and controversial playwright</td></tr>
+        <tr><td>ديكلان كيبرد: سينج "حوّل الفلاحين الأيرلنديين إلى شخصيات مأساوية ذات أهمية كونية"</td><td>Declan Kiberd: Synge "transformed the Irish peasantry into tragic figures of universal significance"</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- TAB 2: MARLOWE -->
+<!-- ══════════════════════════════════════════ -->
+<div id="marlowe" class="section">
+  <div class="section-title">كريستوفر مارلو</div>
+  <div class="section-sub">Christopher Marlowe (1564–1593)</div>
+  <div class="divider"></div>
+
+  <div class="card">
+    <h3>عصره وموقعه الدرامي <span class="ar">| His Age & Dramatic Position</span></h3>
+    <table class="bi-table">
+      <thead><tr><th>العربي</th><th>English</th></tr></thead>
+      <tbody>
+        <tr><td>يحتل مكانة تأسيسية في تطوير الدراما الإنجليزية في عصر النهضة</td><td>Occupies a foundational position in English Renaissance drama</td></tr>
+        <tr><td>مسيرته كانت قصيرة لكن تأثيره عميق</td><td>His career was brief but his dramatic innovations were profound</td></tr>
+        <tr><td>كتب في عهد الملكة إليزابيث الأولى، عصر الاستقرار والازدهار الثقافي</td><td>Wrote during the reign of Elizabeth I — political stability and cultural flourishing</td></tr>
+        <tr><td>ينتمي إلى مجموعة "أذكياء الجامعات" University Wits</td><td>Belonged to the educated playwrights known as the "University Wits"</td></tr>
+        <tr><td>قبل مارلو كانت الدراما تتمحور حول: مسرحيات الأخلاق، والإحالة الدينية، ومسرحيات الانتقام</td><td>Before Marlowe, English drama was dominated by: morality plays, religious allegory, Senecan revenge tragedy</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>أسلوبه | His Style</h3>
+    <table class="bi-table">
+      <thead><tr><th>العربي</th><th>English</th></tr></thead>
+      <tbody>
+        <tr><td>أتقن الشعر المرسل غير المقفّى (iambic pentameter)</td><td>Perfected unrhymed iambic pentameter — blank verse</td></tr>
+        <tr><td>شعره يتميز بـ: الخطابة الفخمة، والرصانة اللغوية، والإيقاع الموسيقي</td><td>His verse features: grand rhetoric, elevated diction, musical cadence</td></tr>
+        <tr><td>بن جونسون أشاد بـ "السطر الجليل" لمارلو</td><td>Ben Jonson famously referred to Marlowe's "mighty line"</td></tr>
+        <tr><td>حوّل الشعر المسرحي من الجمود والاصطناع إلى المرونة والكثافة العاطفية</td><td>Gave dramatic verse flexibility, emotional intensity, and heroic resonance</td></tr>
+        <tr><td>حبكاته مباشرة تُركّز على صعود البطل وسقوطه</td><td>Plots are structurally direct, focusing on the protagonist's rise and fall</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>مواضيعه الرئيسية <span class="ar">| His Major Themes</span></h3>
+    <table class="bi-table">
+      <thead><tr><th>العربي</th><th>English</th></tr></thead>
+      <tbody>
+        <tr><td>الطموح ورغبة السلطة — محور أعماله الرئيسي</td><td>Ambition and the desire for power — his central theme</td></tr>
+        <tr><td>أبطاله يسعون إلى: السيطرة السياسية، المعرفة اللانهائية، المتعة، السلطة المطلقة</td><td>Heroes seek: political domination, infinite knowledge, sensual pleasure, absolute authority</td></tr>
+        <tr><td>العصيان — شخصياته تتحدى السلطة الإلهية والسياسية والاجتماعية</td><td>Defiance — characters challenge divine, political, and social authority</td></tr>
+        <tr><td>الإنسانوية والتطلع الفكري</td><td>Humanism and intellectual aspiration</td></tr>
+        <tr><td>الفردية المأساوية — أبطاله يقفون وحيدين في مواجهة العالم</td><td>Tragic individualism — heroes stand alone against the world</td></tr>
+        <tr><td>السلطة السياسية والملكية (في مسرحية إدوارد الثاني)</td><td>Political authority and kingship (Edward II)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>شخصية المتجاوز للحدود <span class="ar">| The Overreacher</span></h3>
+    <div class="char-grid">
+      <div class="char-card">
+        <h4>Tamburlaine — تمبرلين</h4>
+        <div class="en-desc">The Conqueror — pursues absolute power</div>
+        <div class="ar-desc">الفاتح الطامح إلى السلطة المطلقة</div>
+      </div>
+      <div class="char-card">
+        <h4>Doctor Faustus — دكتور فاوستوس</h4>
+        <div class="en-desc">The Scholar-Magician — seeks forbidden knowledge</div>
+        <div class="ar-desc">العالم الساحر الباحث عن المعرفة المحرّمة</div>
+      </div>
+      <div class="char-card">
+        <h4>Edward II — إدوارد الثاني</h4>
+        <div class="en-desc">The Ambitious Monarch — fragile kingship</div>
+        <div class="ar-desc">الملك الطموح والملكية الهشّة</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>علاقته الفنية بشكسبير <span class="ar">| Artistic Relationship with Shakespeare</span></h3>
+    <table class="bi-table">
+      <thead><tr><th>العربي</th><th>English</th></tr></thead>
+      <tbody>
+        <tr><td>وُلد مارلو وشكسبير في العام نفسه (1564) لكن مارلو سبقه في المسيرة</td><td>Both born in 1564, but Marlowe's career preceded Shakespeare's rise</td></tr>
+        <tr><td>أثّر مارلو في شكسبير من خلال: الشعر المرسل، الأبطال المتطلعين نفسياً، تعظيم التراجيديا</td><td>Marlowe influenced Shakespeare via: blank verse, psychologically ambitious protagonists, elevating tragedy</td></tr>
+        <tr><td>مسرحيات شكسبير المبكرة (ريتشارد الثالث، هنري السادس) تحمل أثر مارلو</td><td>Early Shakespeare plays (Richard III, Henry VI) show Marlovian rhetorical power</td></tr>
+        <tr><td>شكسبير طوّر: الغموض الأخلاقي، العمق النفسي، الرقة العاطفية</td><td>Shakespeare developed: moral ambiguity, psychological depth, emotional subtlety</td></tr>
+        <tr><td>مارلو فتح الطريق الذي وسّعه شكسبير لاحقاً</td><td>Marlowe opened the path that Shakespeare would later broaden and deepen</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- TAB 3: RIDERS TO THE SEA -->
+<!-- ══════════════════════════════════════════ -->
+<div id="riders" class="section">
+  <div class="section-title">راكبو البحر</div>
+  <div class="section-sub">Riders to the Sea — J. M. Synge (1904)</div>
+  <div class="divider"></div>
+
+  <div class="card">
+    <h3>نبذة عن المؤلف <span class="ar">| About the Author</span></h3>
+    <table class="bi-table">
+      <thead><tr><th>العربي</th><th>English</th></tr></thead>
+      <tbody>
+        <tr><td>ج. م. سينج (1871-1909) كاتب مسرحي وفولكلوري أيرلندي</td><td>J. M. Synge (1871–1909) — Irish playwright and folklorist</td></tr>
+        <tr><td>أحد مؤسسي مسرح آبي Abbey Theatre</td><td>Co-founder of the famous Abbey Theatre</td></tr>
+        <tr><td>رحلاته المتكررة إلى جزر آران شكّلت أسلوبه الدرامي</td><td>Frequent travels to the Aran Islands shaped his dramatic style</td></tr>
+        <tr><td>راكبو البحر (1904) تُعدّ من أعظم التراجيديات ذات الفصل الواحد</td><td>Riders to the Sea (1904) is one of the greatest one-act tragedies</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>الشخصيات <span class="ar">| Characters</span></h3>
+    <div class="char-grid">
+      <div class="char-card">
+        <h4>Maurya — مورا</h4>
+        <div class="en-desc">Elderly mother; the emotional and moral center of the play</div>
+        <div class="ar-desc">الأم العجوز؛ المحور العاطفي والأخلاقي للمسرحية</div>
+      </div>
+      <div class="char-card">
+        <h4>Bartley — بارتلي</h4>
+        <div class="en-desc">Maurya's last surviving son; determined but doomed</div>
+        <div class="ar-desc">آخر أبناء مورا الأحياء؛ عازم لكن محكوم عليه</div>
+      </div>
+      <div class="char-card">
+        <h4>Cathleen — كاتلين</h4>
+        <div class="en-desc">Strong, practical eldest daughter</div>
+        <div class="ar-desc">الابنة الكبرى القوية العملية</div>
+      </div>
+      <div class="char-card">
+        <h4>Nora — نورا</h4>
+        <div class="en-desc">Younger daughter; gentle, fearful, emotionally open</div>
+        <div class="ar-desc">الابنة الصغرى الرقيقة الخائفة العاطفية</div>
+      </div>
+      <div class="char-card">
+        <h4>Michael — مايكل</h4>
+        <div class="en-desc">Dead son whose missing body haunts the family</div>
+        <div class="ar-desc">الابن الميت الذي تسكن روحه الغائبة الأسرة</div>
+      </div>
+      <div class="char-card">
+        <h4>The Sea — البحر</h4>
+        <div class="en-desc">Symbolic omnipresent force; a character in all but name</div>
+        <div class="ar-desc">القوة الرمزية الحاضرة دائماً؛ شخصية بكل معنى الكلمة</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>أهم أحداث المسرحية <span class="ar">| Key Events</span></h3>
+    <table class="bi-table">
+      <thead><tr><th>العربي</th><th>English</th></tr></thead>
+      <tbody>
+        <tr><td>المسرحية في كوخ بجزر آران حيث البحر مصدر الرزق والموت</td><td>Set in a cottage on Aran Islands where the sea provides livelihood but threatens life</td></tr>
+        <tr><td>مورا فقدت زوجها وخمسة أبناء في البحر قبل بداية المسرحية</td><td>Maurya has already lost her husband and five sons to the sea</td></tr>
+        <tr><td>كاتلين ونورا تتسلّمان حزمة ملابس يُعتقد أنها تخص مايكل الغائب</td><td>Cathleen and Nora receive clothes believed to belong to the missing Michael</td></tr>
+        <tr><td>بارتلي يصر على العبور للبر الرئيسي لبيع الخيول رغم تحذيرات أمه</td><td>Bartley insists on crossing the sea to sell horses — economic need overrides fear</td></tr>
+        <tr><td>مورا ترى رؤيا: بارتلي على حصان أحمر ومايكل على رمادي — نذير الموت</td><td>Maurya has a vision of Bartley on a red horse and Michael on a grey horse — omen of death</td></tr>
+        <tr><td>القرويون يحضرون جسد بارتلي: أسقطه حصان في البحر فغرق</td><td>Villagers bring Bartley's body — he was knocked into the sea by a horse and drowned</td></tr>
+        <tr><td>مورا تقبل مأساتها بهدوء وكرامة</td><td>Maurya accepts her tragedy with quiet dignity and resignation</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>المواضيع والرموز <span class="ar">| Themes & Symbols</span></h3>
+    <table class="bi-table">
+      <thead><tr><th>العربي</th><th>English</th></tr></thead>
+      <tbody>
+        <tr><td>القدر والعجز البشري — لا أحد يمكنه أن يعيش للأبد</td><td>Fate and human helplessness — "No man at all can be living forever"</td></tr>
+        <tr><td>البحر = القدر + قوة التاريخ الأيرلندي من المجاعة والهجرة</td><td>The sea = fate + Ireland's maritime history of famine, migration, drowned fishermen</td></tr>
+        <tr><td>البحر ليس قاسياً بل لامبالياً — قوته في حياده</td><td>The sea is not cruel but indifferent — its power lies in its neutrality</td></tr>
+        <tr><td>القبول المأساوي — مورا تتحرر بعد فقدان كل شيء</td><td>Tragic acceptance — Maurya finds liberation through total loss</td></tr>
+        <tr><td>دور المرأة الأيرلندية في مواجهة الفقر والموت</td><td>The role of Irish women sustaining families under extreme hardship</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>آراء النقاد <span class="ar">| Critical Views</span></h3>
+    <table class="bi-table">
+      <thead><tr><th>العربي</th><th>English</th></tr></thead>
+      <tbody>
+        <tr><td>نيكولاس غرين: مورا تجسّد النمط المأساوي الكوني للأم التي يشكّلها الخسارة المتكررة</td><td>Nicholas Grene: Maurya embodies a universal tragic pattern — a mother shaped by repeated loss</td></tr>
+        <tr><td>أنتوني روش: قرار بارتلي بالإبحار مدفوع بالمسؤولية لا التهور</td><td>Anthony Roche: Bartley's decision to sail is driven by responsibility, not recklessness</td></tr>
+        <tr><td>كريستوفر موراش: كاتلين هي العمود الفقري التنظيمي للمسرحية</td><td>Christopher Morash: Cathleen's practicality grounds the play, giving it structural coherence</td></tr>
+        <tr><td>كويلن أوينز: البحر خصم البشري والطبيعي في آنٍ واحد</td><td>Cóilín Owens: the sea functions as both natural force and mythic adversary</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- TAB 4: DRAMA (FAUSTUS) -->
+<!-- ══════════════════════════════════════════ -->
+<div id="drama" class="section">
+  <div class="section-title">دكتور فاوستوس</div>
+  <div class="section-sub">Doctor Faustus — Marlowe's Masterpiece</div>
+  <div class="divider"></div>
+
+  <div class="card">
+    <h3>الأفكار الرئيسية في فاوستوس <span class="ar">| Key Ideas in Faustus</span></h3>
+    <table class="bi-table">
+      <thead><tr><th>العربي</th><th>English</th></tr></thead>
+      <tbody>
+        <tr><td>فاوستوس يرفض اللاهوت التقليدي بحثاً عن المعرفة المحرّمة</td><td>Faustus rejects traditional theology in pursuit of forbidden knowledge</td></tr>
+        <tr><td>المسرحية تُمثّل التوتر بين الإنسانوية الرينيسانسية والأرثوذكسية المسيحية</td><td>The play dramatizes tension between Renaissance humanism and Christian orthodoxy</td></tr>
+        <tr><td>فاوستوس نموذج البطل المتجاوز: العالم الساحر</td><td>Faustus is the archetypal overreacher: the scholar-magician</td></tr>
+        <tr><td>سقوطه لا ينبع من فشل أخلاقي بسيط بل من عظمة طموحه المأساوية</td><td>His downfall results not from simple moral failure but from the tragic magnitude of his aspiration</td></tr>
+        <tr><td>يسعى إلى: المعرفة اللانهائية، المتعة الحسية، السلطة المطلقة</td><td>He seeks: infinite knowledge, sensual pleasure, absolute authority</td></tr>
+        <tr><td>يمثّل احتفال عصر النهضة بالإمكانيات البشرية مدفوعاً إلى حدوده القصوى</td><td>Represents Renaissance celebration of human potential pushed to its limits and beyond</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>مارلو وإنجازاته الدرامية <span class="ar">| Marlowe's Dramatic Achievements</span></h3>
+    <table class="bi-table">
+      <thead><tr><th>العربي</th><th>English</th></tr></thead>
+      <tbody>
+        <tr><td>مسرحية تمبرلين العظيم كانت نقطة تحوّل في الدراما الإنجليزية</td><td>Tamburlaine the Great marked a turning point in English drama</td></tr>
+        <tr><td>رفع التراجيديا من التعليم الأخلاقي إلى الاستفسار الفلسفي</td><td>Elevated tragedy from moral instruction to poetic spectacle and philosophical inquiry</td></tr>
+        <tr><td>أرسى الأساس البنيوي والشعري الذي صقّله شكسبير لاحقاً</td><td>Laid the structural and poetic foundation that Shakespeare would later refine and deepen</td></tr>
+        <tr><td>بدون "السطر الجليل" وأبطاله الجبابرة كان تطوّر التراجيديا سيسلك مساراً مختلفاً</td><td>Without Marlowe's mighty line and titanic protagonists, English Renaissance tragedy would have taken a very different course</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- TAB 5: MCQ -->
+<!-- ══════════════════════════════════════════ -->
+<div id="mcq" class="section">
+  <div class="section-title">أسئلة الاختيار من متعدد</div>
+  <div class="section-sub">60 MCQ Questions — Bilingual | ثنائية اللغة</div>
+  <div class="divider"></div>
+  <p style="text-align:center;color:var(--text-dim);margin-bottom:24px;font-size:0.95rem;">اضغط على السؤال لعرض الخيارات والإجابة | Click on a question to reveal options and answer</p>
+
+  <button class="show-all-btn" onclick="toggleAll()">عرض / إخفاء جميع الإجابات | Show / Hide All Answers</button>
+
+  <div id="mcq-list"></div>
+</div>
+
+<div class="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</div>
+
+<script>
+// ─── TAB LOGIC ───
+function showTab(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// ─── MCQ DATA ───
+const questions = [
+  // DRAMA DEFINITION & ELEMENTS (1-15)
+  {
+    ar: "ما معنى كلمة 'دراما' في اللغة اليونانية؟",
+    en: "What does the Greek word 'drama' mean?",
+    opts: ["يكتب / to write","يُغنّي / to sing","يفعل أو يمثّل / to do or act","يفكّر / to think"],
+    ans: 2, topic: "Drama"
+  },
+  {
+    ar: "من عرّف التراجيديا بأنها 'محاكاة لفعل جدّي وتام وذي قيمة معينة'؟",
+    en: "Who defined tragedy as 'an imitation of an action that is serious, complete, and of a certain magnitude'?",
+    opts: ["شكسبير / Shakespeare","أرسطو / Aristotle","مارلو / Marlowe","أفلاطون / Plato"],
+    ans: 1, topic: "Drama"
+  },
+  {
+    ar: "ما هو 'روح التراجيديا' عند أرسطو؟",
+    en: "What did Aristotle call 'the soul of tragedy'?",
+    opts: ["الشخصية / Character","المضمون / Theme","الحبكة / Plot","الحوار / Dialogue"],
+    ans: 2, topic: "Drama"
+  },
+  {
+    ar: "أي من التالي ليس من العناصر الرئيسية للدراما؟",
+    en: "Which of the following is NOT a major element of drama?",
+    opts: ["الحبكة / Plot","الصراع / Conflict","القافية / Rhyme","الشخصيات / Characters"],
+    ans: 2, topic: "Drama"
+  },
+  {
+    ar: "ما الفرق بين الصراع الداخلي والخارجي في الدراما؟",
+    en: "In drama, internal conflict occurs within a character, while external conflict occurs…",
+    opts: ["في الحوار فقط / only in dialogue","بين الشخصيات أو مع القدر/الطبيعة / between characters or vs. fate/nature","في الفصل الأخير فقط / only in the last act","في القصائد / in poems only"],
+    ans: 1, topic: "Drama"
+  },
+  {
+    ar: "متى ظهرت الدراما الحديثة؟",
+    en: "When did modern drama emerge?",
+    opts: ["القرن السابع عشر / 17th century","القرن الثامن عشر / 18th century","أواخر القرن التاسع عشر وأوائل العشرين / late 19th & early 20th centuries","القرن الحادي والعشرين / 21st century"],
+    ans: 2, topic: "Modern Drama"
+  },
+  {
+    ar: "ما الذي تميّزت به الدراما الحديثة عن الرومانسية؟",
+    en: "Modern drama rejected romanticism and turned toward…",
+    opts: ["الخيال والأساطير / fantasy and myths","الواقعية والعمق النفسي / realism and psychological depth","الشعر الملحمي / epic poetry","المسرح الديني / religious theatre"],
+    ans: 1, topic: "Modern Drama"
+  },
+  {
+    ar: "ما قول ريموند ويليامز عن الدراما الحديثة في كتابه 'الدراما من إبسن إلى بريخت'؟",
+    en: "Raymond Williams said modern drama made the theatre 'a place where…'",
+    opts: ["الفنانون يكسبون المال / artists earn money","المجتمع يفحص نفسه / society could examine itself","الملوك يظهرون / kings could appear","الأساطير تُروى / myths are told"],
+    ans: 1, topic: "Modern Drama"
+  },
+  {
+    ar: "تتميّز الدراما الحديثة بـ…",
+    en: "Modern drama is characterized by all EXCEPT…",
+    opts: ["التركيز على التجربة الفردية / focus on individual experience","الرومانسية المبالغ فيها / exaggerated romanticism","استكشاف قضايا اجتماعية وأخلاقية / exploring social and moral issues","التجريب في الشكل واللغة / experimentation with form and language"],
+    ans: 1, topic: "Modern Drama"
+  },
+  {
+    ar: "أي مما يلي صحيح عن الدراما الأيرلندية؟",
+    en: "Which is TRUE about Irish drama?",
+    opts: ["تطوّرت بمعزل عن السياسة / developed apart from politics","ارتبطت بهوية أيرلندا ونضالها / linked to Ireland's identity and struggle","تجاهلت الحياة الريفية / ignored rural life","ظهرت في القرن الثامن عشر / emerged in the 18th century"],
+    ans: 1, topic: "Irish Drama"
+  },
+  {
+    ar: "ما الذي استخدمته الدراما الأيرلندية للتعبير؟",
+    en: "Irish drama used all of the following EXCEPT…",
+    opts: ["الواقعية / realism","الرمزية / symbolism","اللغة الشعرية / poetic language","الكوميديا الساخرة الحديثة / modern satire"],
+    ans: 3, topic: "Irish Drama"
+  },
+  {
+    ar: "ما هي وظيفة الحوار في الدراما؟",
+    en: "What is the primary function of dialogue in drama?",
+    opts: ["تزيين الصفحة / decoration","الكشف عن المشاعر والعلاقات ودفع الحبكة / reveal emotions, relationships, and drive the plot","وصف المناظر الطبيعية / describe scenery","تقديم الحوادث التاريخية / present historical facts"],
+    ans: 1, topic: "Drama"
+  },
+  {
+    ar: "أي من التالي صحيح عن البيئة في الدراما؟",
+    en: "The setting in a play refers to…",
+    opts: ["أفكار المؤلف / the author's ideas","الزمان والمكان اللذان تجري فيهما الأحداث / the time and place where events occur","لغة الشخصيات / the characters' language","شكل المسرحية / the form of the play"],
+    ans: 1, topic: "Drama"
+  },
+  {
+    ar: "ما نوع أدب الدراما من حيث الهدف؟",
+    en: "Drama is described as…",
+    opts: ["فن أدبي بحت / purely literary art","فن أدبي وأدائي في آنٍ واحد / both a literary and performative art","فن بصري فقط / purely visual art","فن موسيقي / musical art"],
+    ans: 1, topic: "Drama"
+  },
+  {
+    ar: "ما الأبطال الذين يصفهم أرسطو بـ 'البطل الرئيسي'؟",
+    en: "The 'protagonist' in drama refers to…",
+    opts: ["الشخصية الثانوية / supporting character","الشخصية المعارضة / antagonist","الشخصية الرئيسية / main character","الراوي / narrator"],
+    ans: 2, topic: "Drama"
+  },
+  // MARLOWE (16-35)
+  {
+    ar: "ما السنوات التي عاشها كريستوفر مارلو؟",
+    en: "What were Christopher Marlowe's life years?",
+    opts: ["1564–1616","1564–1593","1550–1600","1580–1620"],
+    ans: 1, topic: "Marlowe"
+  },
+  {
+    ar: "إلى أي مجموعة من الكتّاب ينتمي مارلو؟",
+    en: "Marlowe belonged to which group of educated playwrights?",
+    opts: ["Romantic Poets — الشعراء الرومانسيون","The University Wits — أذكياء الجامعات","The Metaphysical Poets — شعراء الميتافيزيقا","The Pre-Raphaelites — ما قبل الرافاييليين"],
+    ans: 1, topic: "Marlowe"
+  },
+  {
+    ar: "ما الأسلوب الشعري الذي أتقنه مارلو؟",
+    en: "Marlowe perfected which poetic form as a dramatic instrument?",
+    opts: ["القصيدة المقفّاة / rhymed verse","الشعر المرسل / blank verse (iambic pentameter)","الأوديّة / odes","القصيدة السوناتة / sonnets"],
+    ans: 1, topic: "Marlowe"
+  },
+  {
+    ar: "من أشاد بـ 'السطر الجليل' لمارلو؟",
+    en: "Who famously referred to Marlowe's 'mighty line'?",
+    opts: ["شكسبير / Shakespeare","جون ميلتون / John Milton","بن جونسون / Ben Jonson","فيليب سيدني / Philip Sidney"],
+    ans: 2, topic: "Marlowe"
+  },
+  {
+    ar: "ما الموضوع المحوري في أعمال مارلو؟",
+    en: "What is considered Marlowe's central theme?",
+    opts: ["الحب الرومانسي / romantic love","الطموح والرغبة في السلطة / ambition and the desire for power","الصداقة والولاء / friendship and loyalty","الطبيعة والبيئة / nature and environment"],
+    ans: 1, topic: "Marlowe"
+  },
+  {
+    ar: "ما مسرحية مارلو التي شكّلت نقطة تحوّل في الدراما الإنجليزية؟",
+    en: "Which Marlowe play marked a turning point in English drama?",
+    opts: ["Doctor Faustus","Edward II","Tamburlaine the Great — تمبرلين العظيم","The Jew of Malta"],
+    ans: 2, topic: "Marlowe"
+  },
+  {
+    ar: "كيف يُصف أبطال مارلو؟",
+    en: "Marlowe's protagonists are best described as…",
+    opts: ["شخصيات متواضعة / humble characters","أبطال متجاوزون للحدود يتحدون القيود / overreaching heroes who challenge limits","أبطال مأساويون كلاسيكيون / classical tragic heroes","ضحايا المجتمع / victims of society"],
+    ans: 1, topic: "Marlowe"
+  },
+  {
+    ar: "ما الذي يميّز الصراع الدرامي لمارلو؟",
+    en: "Marlowe's dramatic experience relies heavily on…",
+    opts: ["الكوميديا والفكاهة / comedy and humor","البراعة الخطابية والتطرف العاطفي / rhetorical brilliance and emotional extremity","الحب والعلاقات / love and relationships","الحوادث التاريخية الواقعية / real historical incidents"],
+    ans: 1, topic: "Marlowe"
+  },
+  {
+    ar: "ماذا يمثّل دكتور فاوستوس في أعمال مارلو؟",
+    en: "In Marlowe's works, Doctor Faustus represents…",
+    opts: ["الفاتح / the conqueror","الملك الطموح / the ambitious monarch","العالم الساحر / the scholar-magician","البطل الشعبي / the folk hero"],
+    ans: 2, topic: "Marlowe"
+  },
+  {
+    ar: "في أي مسرحية لمارلو يستكشف هشاشة الملكية؟",
+    en: "In which Marlowe play does he explore the fragility of monarchy?",
+    opts: ["Doctor Faustus","Tamburlaine","Edward II — إدوارد الثاني","The Massacre at Paris"],
+    ans: 2, topic: "Marlowe"
+  },
+  {
+    ar: "كيف وصفت الحبكات عند مارلو من حيث الهيكل؟",
+    en: "How are Marlowe's plots described structurally?",
+    opts: ["معقّدة ومتشعّبة / complex and multifaceted","مباشرة تُركّز على صعود البطل وسقوطه / direct, focusing on protagonist's rise and fall","عشوائية وغير منظّمة / random and disorganized","مبنية على الصدفة / built on coincidence"],
+    ans: 1, topic: "Marlowe"
+  },
+  {
+    ar: "ماذا يعني 'الفردية المأساوية' في شخصيات مارلو؟",
+    en: "Marlowe's 'tragic individualism' means his heroes…",
+    opts: ["يعتمدون على المجتمع / depend on society","يقفون وحيدين في مواجهة العالم / stand alone against the world","يبحثون عن الحب / seek love","يتبعون القواعد / follow rules"],
+    ans: 1, topic: "Marlowe"
+  },
+  {
+    ar: "كيف أثّر مارلو في شكسبير؟",
+    en: "How did Marlowe influence Shakespeare?",
+    opts: ["علّمه الكتابة / taught him to write","أرسى الشعر المرسل وقدّم أبطالاً طموحين نفسياً / established blank verse and introduced psychologically ambitious protagonists","أعطاه موضوعات كوميدية / gave him comic themes","كتبوا معاً / they wrote together"],
+    ans: 1, topic: "Marlowe"
+  },
+  {
+    ar: "في أي مسرحيات شكسبير المبكرة يتجلّى تأثير مارلو؟",
+    en: "Which early Shakespeare plays show Marlovian influence?",
+    opts: ["A Midsummer Night's Dream & The Tempest","Richard III & Henry VI — ريتشارد الثالث وهنري السادس","Romeo and Juliet & Hamlet","Macbeth & Othello"],
+    ans: 1, topic: "Marlowe"
+  },
+  {
+    ar: "ما الذي طوّره شكسبير مقارنةً بمارلو؟",
+    en: "Compared to Marlowe, Shakespeare developed…",
+    opts: ["المزيد من الغموض الأخلاقي والعمق النفسي / more moral ambiguity and psychological depth","أبطال أكثر حدّة وتطرفاً / more extreme and singular heroes","حبكات أبسط / simpler plots","شخصيات أقل / fewer characters"],
+    ans: 0, topic: "Marlowe"
+  },
+  {
+    ar: "كيف يصف النقاد معالجة مارلو للإنسانوية؟",
+    en: "Marlowe's treatment of humanism is described as…",
+    opts: ["إيجابي تماماً / entirely positive","غامض — الطموح يقود إلى المأساة حين يُفصل عن الضبط الأخلاقي / ambivalent — aspiration leads to tragedy when detached from moral restraint","غير مبالٍ / indifferent","ديني بحت / purely religious"],
+    ans: 1, topic: "Marlowe"
+  },
+  {
+    ar: "ما كان وضع الدراما الإنجليزية قبل مارلو؟",
+    en: "Before Marlowe, English drama was dominated by…",
+    opts: ["الكوميديا والفارس / comedy and farce","مسرحيات الأخلاق والإحالة الدينية والانتقام / morality plays, religious allegory, revenge tragedy","الدراما النفسية / psychological drama","التراجيديا الشكسبيرية / Shakespearean tragedy"],
+    ans: 1, topic: "Marlowe"
+  },
+  // RIDERS TO THE SEA (36-52)
+  {
+    ar: "متى كُتبت مسرحية 'راكبو البحر'؟",
+    en: "When was 'Riders to the Sea' written/performed?",
+    opts: ["1890","1904","1916","1925"],
+    ans: 1, topic: "Riders"
+  },
+  {
+    ar: "أين تجري أحداث مسرحية 'راكبو البحر'؟",
+    en: "Where is 'Riders to the Sea' set?",
+    opts: ["بلفاست / Belfast","دبلن / Dublin","جزر آران / The Aran Islands","لندن / London"],
+    ans: 2, topic: "Riders"
+  },
+  {
+    ar: "كم عدد الأبناء الذين فقدتهم مورا قبل بداية المسرحية؟",
+    en: "How many sons had Maurya lost before the play begins?",
+    opts: ["ثلاثة / three","أربعة / four","خمسة / five","ستة / six"],
+    ans: 2, topic: "Riders"
+  },
+  {
+    ar: "ما رؤيا مورا التي تنذر بالموت؟",
+    en: "What vision does Maurya have that serves as an omen of death?",
+    opts: ["بارتلي يغرق في البحر / Bartley drowning","بارتلي على حصان أحمر ومايكل على رمادي / Bartley on red horse & Michael on grey horse","المد العالي / the high tide","عاصفة ليلية / a night storm"],
+    ans: 1, topic: "Riders"
+  },
+  {
+    ar: "لماذا يصر بارتلي على العبور رغم تحذيرات أمه؟",
+    en: "Why does Bartley insist on sailing despite his mother's warnings?",
+    opts: ["يريد المغامرة / wants adventure","الاحتياج الاقتصادي يتغلب على الخوف / economic need overrides fear","يعصي أمه / disobeys his mother purposely","لا يصدق النذير / disbelieves the omen"],
+    ans: 1, topic: "Riders"
+  },
+  {
+    ar: "كيف يموت بارتلي؟",
+    en: "How does Bartley die?",
+    opts: ["يغرق في عاصفة / drowns in a storm","يسقطه حصان في البحر / knocked into the sea by a horse","يُصاب بمرض / dies of illness","يُقتل في شجار / killed in a fight"],
+    ans: 1, topic: "Riders"
+  },
+  {
+    ar: "ما الجملة الشهيرة التي تقولها مورا في نهاية المسرحية؟",
+    en: "What famous line does Maurya say at the end of the play?",
+    opts: [
+      "الحياة جميلة رغم كل شيء / Life is beautiful after all",
+      "لا أحد يمكنه أن يعيش للأبد وعلينا أن نقبل / No man at all can be living forever, and we must be satisfied",
+      "البحر عدوّنا / The sea is our enemy",
+      "لقد انتهى كل شيء / It is all over now"
+    ],
+    ans: 1, topic: "Riders"
+  },
+  {
+    ar: "ما الدور الرمزي للبحر في المسرحية؟",
+    en: "What symbolic role does the sea play in 'Riders to the Sea'?",
+    opts: ["مصدر للسعادة / source of happiness","قوة القدر والتاريخ الأيرلندي للمأساة البحرية / force of fate and Ireland's maritime tragedy","مكان للترفيه / place for recreation","رمز للحرية / symbol of freedom"],
+    ans: 1, topic: "Riders"
+  },
+  {
+    ar: "كيف وصف كويلن أوينز البحر في المسرحية؟",
+    en: "Cóilín Owens argues the sea is…",
+    opts: ["قاسٍ ومتعمّد / cruel and deliberate","قوة طبيعية وخصم أسطوري في آنٍ واحد / both natural force and mythic adversary","لا مبالٍ لا قاسٍ / not cruel but indifferent","رمز الخير / symbol of goodness"],
+    ans: 2, topic: "Riders"
+  },
+  {
+    ar: "ما دور كاتلين في المسرحية وفق كريستوفر موراش؟",
+    en: "According to Christopher Morash, Cathleen's role in the play is…",
+    opts: ["المصدر الرئيسي للمأساة / the main source of tragedy","منح المسرحية تماسكاً هيكلياً / giving the play structural coherence","مرافقة نورا فقط / accompanying Nora only","إيصال الأخبار / delivering news"],
+    ans: 1, topic: "Riders"
+  },
+  {
+    ar: "ما الذي ترمز إليه نورا في المسرحية؟",
+    en: "Nora symbolizes…",
+    opts: ["القوة والصمود / strength and endurance","الشباب الذي يواجه الموت مبكراً / youth confronted prematurely with death","الأمل والمستقبل / hope and the future","التقاليد الدينية / religious tradition"],
+    ans: 1, topic: "Riders"
+  },
+  {
+    ar: "ما اسم المسرح الذي أسّسه سينج؟",
+    en: "Synge co-founded which famous theatre?",
+    opts: ["Globe Theatre","Abbey Theatre — مسرح آبي","Old Vic Theatre","Gaiety Theatre"],
+    ans: 1, topic: "Riders"
+  },
+  {
+    ar: "كيف يصف نيكولاس غرين شخصية مورا؟",
+    en: "Nicholas Grene argues Maurya embodies…",
+    opts: ["نمطاً فردياً خاصاً بها / a uniquely personal pattern","نمطاً مأساوياً كونياً — الأم التي يشكّلها الخسارة / a universal tragic pattern of a mother shaped by repeated loss","رمزاً وطنياً أيرلندياً فقط / only an Irish national symbol","شخصية دينية / a religious figure"],
+    ans: 1, topic: "Riders"
+  },
+  {
+    ar: "ما الذي يجعل 'راكبو البحر' تراجيديا حديثة؟",
+    en: "What makes 'Riders to the Sea' a modern tragedy?",
+    opts: ["وجود ملوك وأمراء / presence of kings and princes","تصوير الفقر والقدر وعجز الإنسان العادي / portrayal of poverty, fate, and helplessness of ordinary people","حبكتها المعقّدة / its complex plot","استخدام الشعر المرسل / use of blank verse"],
+    ans: 1, topic: "Riders"
+  },
+  {
+    ar: "ماذا تمثل الملابس التي وصلت من دونيغال في المسرحية؟",
+    en: "The bundle of clothes from Donegal symbolizes…",
+    opts: ["هدية من صديق / a gift from a friend","دليل على موت مايكل والخسارة القادمة / evidence of Michael's death and approaching loss","مستلزمات السفر / travel supplies","تذكار قديم / an old memento"],
+    ans: 1, topic: "Riders"
+  },
+  {
+    ar: "كيف انتهت المسرحية عاطفياً؟",
+    en: "How does the play end emotionally?",
+    opts: ["بالغضب والثورة / in anger and revolt","بكرامة هادئة وقبول مأساوي / with quiet dignity and tragic acceptance","بالأمل والتفاؤل / with hope and optimism","بالانتقام / with revenge"],
+    ans: 1, topic: "Riders"
+  },
+  {
+    ar: "ما علاقة سينج بجزر آران؟",
+    en: "What was Synge's connection to the Aran Islands?",
+    opts: ["وُلد هناك / he was born there","زارها مرة واحدة / visited once","زارها مرات عدة وجمع الحكايات الشعبية / visited frequently and collected folk tales","اشترى أرضاً هناك / bought land there"],
+    ans: 2, topic: "Riders"
+  },
+  // MIXED / FAUSTUS / GENERAL (53-60)
+  {
+    ar: "في أي مسرحية يرفض الشخصية الرئيسية اللاهوت التقليدي؟",
+    en: "In which Marlowe play does the main character reject traditional theology?",
+    opts: ["Tamburlaine the Great","Edward II","Doctor Faustus — دكتور فاوستوس","The Massacre at Paris"],
+    ans: 2, topic: "Faustus"
+  },
+  {
+    ar: "ما التوتر الذي تُجسّده مسرحية 'دكتور فاوستوس'؟",
+    en: "Doctor Faustus dramatizes the tension between…",
+    opts: ["الشباب والشيخوخة / youth and old age","الفقر والثروة / poverty and wealth","الإنسانوية الرينيسانسية والأرثوذكسية المسيحية / Renaissance humanism and Christian orthodoxy","الحرب والسلام / war and peace"],
+    ans: 2, topic: "Faustus"
+  },
+  {
+    ar: "ما الذي يسعى إليه فاوستوس في المسرحية؟",
+    en: "Faustus seeks all of the following EXCEPT…",
+    opts: ["المعرفة اللانهائية / infinite knowledge","السلطة المطلقة / absolute authority","المتعة الحسية / sensual pleasure","السلام الروحي / spiritual peace"],
+    ans: 3, topic: "Faustus"
+  },
+  {
+    ar: "ما وجه الشبه الأساسي بين مارلو وشكسبير؟",
+    en: "What do Marlowe and Shakespeare share artistically?",
+    opts: ["كتبوا في القرن الثامن عشر / wrote in the 18th century","يعكسان سحر عصر النهضة بالقوة الفردية والسلطة السياسية / reflect Renaissance fascination with individual power and political authority","يكتبان كوميديا فقط / wrote only comedy","يتجاهلان الطموح / ignore ambition"],
+    ans: 1, topic: "Marlowe"
+  },
+  {
+    ar: "ما الفرق الجوهري بين مارلو وشكسبير في تصوير الشخصيات؟",
+    en: "A key difference between Marlowe and Shakespeare in characterization is…",
+    opts: ["شكسبير أقل موهبة / Shakespeare is less talented","أبطال مارلو متطرفون وأحادية البعد بينما شخصيات شكسبير أكثر تعقيداً وتعدد أبعاد / Marlowe's heroes are singular and extreme; Shakespeare's are more complex and multidimensional","مارلو يكتب فقط كوميديا / Marlowe writes only comedy","لا فرق بينهما / no difference"],
+    ans: 1, topic: "Marlowe"
+  },
+  {
+    ar: "ما الروح المشتركة التي يتقاسمها مارلو وشكسبير؟",
+    en: "Both Marlowe and Shakespeare share the Renaissance spirit of fascination with…",
+    opts: ["الديانة والكنيسة فقط / religion and church only","القوة الفردية والسلطة السياسية والتوتر بين الطموح والحدود الأخلاقية / individual power, political authority, and tension between aspiration and moral limitation","الطبيعة والريف / nature and countryside","الشعر الغنائي / lyrical poetry"],
+    ans: 1, topic: "Marlowe"
+  },
+  {
+    ar: "ما الذي يعنيه مصطلح 'المتجاوز للحدود' عند مارلو؟",
+    en: "The Marlovian 'overreacher' is a hero who…",
+    opts: ["يقبل قدره بهدوء / accepts fate quietly","يتحدى الحدود الإلهية والسياسية والطبيعية بدافع الطموح الجامح / challenges divine, political, or natural limits driven by excessive ambition","يُحبّ أسرته فوق كل شيء / loves his family above all","يتبع الأخلاق الدينية / follows religious morals"],
+    ans: 1, topic: "Marlowe"
+  },
+  {
+    ar: "ما الإرث الدائم لمارلو في تاريخ الدراما؟",
+    en: "Marlowe's lasting legacy in drama is…",
+    opts: ["اخترع الكوميديا الإنجليزية / invented English comedy","ثوّر المسرح بإتقان الشعر المرسل وخلق البطل المأساوي المتجاوز للحدود وبفتح الطريق أمام شكسبير / revolutionized theatre through blank verse, the overreaching tragic hero, and paving the way for Shakespeare","كتب أعظم المسرحيات الشكسبيرية / wrote the greatest Shakespearean plays","أسّس مسرح الغلوب / founded the Globe Theatre"],
+    ans: 1, topic: "Marlowe"
+  }
+];
+
+// ─── RENDER MCQ ───
+function renderMCQ() {
+  const list = document.getElementById('mcq-list');
+  list.innerHTML = '';
+  questions.forEach((q, i) => {
+    const topicColors = { Drama:'', 'Modern Drama':'blue', 'Irish Drama':'blue', Marlowe:'red', Riders:'', Faustus:'red' };
+    const div = document.createElement('div');
+    div.className = 'mcq-item';
+    div.innerHTML = `
+      <div class="mcq-q" onclick="toggleMCQ(${i})">
+        <span class="mcq-num">Q${i+1}</span>
+        <div class="mcq-text">
+          <div class="ar">${q.ar}</div>
+          <div class="en">${q.en}</div>
+          <span class="tag ${topicColors[q.topic]||''}" style="margin-top:6px">${q.topic}</span>
+        </div>
+      </div>
+      <div class="mcq-opts" id="opts-${i}">
+        ${q.opts.map((o,oi)=>`
+          <div class="opt ${oi===q.ans?'correct':''}">
+            <span class="opt-letter">${['A','B','C','D'][oi]}</span>
+            <span>${o}</span>
+            ${oi===q.ans?'<span style="margin-right:auto;color:#7fc87f;font-size:0.8rem">✓</span>':''}
+          </div>
+        `).join('')}
+      </div>
+      <div class="answer-reveal" id="ans-${i}">
+        <div class="ans-label">الإجابة الصحيحة | Correct Answer</div>
+        <p>${['A','B','C','D'][q.ans]}) ${q.opts[q.ans]}</p>
+      </div>
+    `;
+    list.appendChild(div);
+  });
+}
+
+function toggleMCQ(i) {
+  const opts = document.getElementById('opts-'+i);
+  const ans = document.getElementById('ans-'+i);
+  const isOpen = opts.classList.contains('open');
+  opts.classList.toggle('open', !isOpen);
+  ans.classList.toggle('open', !isOpen);
+}
+
+let allOpen = false;
+function toggleAll() {
+  allOpen = !allOpen;
+  questions.forEach((_,i) => {
+    document.getElementById('opts-'+i).classList.toggle('open', allOpen);
+    document.getElementById('ans-'+i).classList.toggle('open', allOpen);
+  });
+}
+
+renderMCQ();
+</script>
+</body>
+</html>
